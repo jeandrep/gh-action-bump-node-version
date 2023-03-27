@@ -159,7 +159,7 @@ const pkg = getPackageJson();
     await runInWorkspace('git', [
       'config',
       'user.email',
-      `"${process.env.GITHUB_EMAIL || 'gh-action-bump-version@users.noreply.github.com'}"`,
+      `"${process.env.GITHUB_EMAIL || 'gh-action-bump-node-version@users.noreply.github.com'}"`,
     ]);
 
     let currentBranch;
@@ -223,7 +223,7 @@ const pkg = getPackageJson();
       );
     }
 
-    const remoteRepo = `https://${process.env.GITHUB_ACTOR}:${process.env.GITHUB_TOKEN}@github.com/${process.env.GITHUB_REPOSITORY}.git`;
+    const remoteRepo = `https://${process.env.GITHUB_ACTOR}:${process.env.GITHUB_TOKEN}@${process.env.GITHUB_SERVER}/${process.env.GITHUB_REPOSITORY}.git`;
     if (process.env['INPUT_SKIP-TAG'] !== 'true') {
       await runInWorkspace('git', ['tag', newVersion]);
       if (process.env['INPUT_SKIP-PUSH'] !== 'true') {
